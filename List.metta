@@ -47,3 +47,24 @@
 )
 
 ! (append (Cons 1 (Cons 2 (Cons 3 Nil))) 4) ; ->(Cons 1 (Cons 2 (Cons 3(Cons 4 Nil))))
+
+=============================================== 
+ ;max-value
+(= (max-value $list)
+    (if (== $list Nil)
+        Nil
+        (max-value-helper (tail $list) (head $list))
+    )
+)
+
+(= (max-value-helper $list $max-so-far)
+    (if (== $list Nil)
+        $max-so-far
+        (if (> (head $list) $max-so-far)
+            (max-value-helper (tail $list) (head $list))
+            (max-value-helper (tail $list) $max-so-far)
+        )
+)
+)
+
+! (max-value (Cons 1 (Cons 3 (Cons 2 (Cons 4 Nil))))) ;-> 4
