@@ -120,3 +120,21 @@
 
 ! (remove-element (Cons 1 (Cons 2 (Cons 3 Nil))) 2) ;->(Cons 1 (Cons 3 Nil))
 ====================================================== 
+ ;remove-duplicate
+(= (remove-duplicates $list)
+    (if (== $list Nil)
+        Nil
+        (Cons (head $list) (remove-duplicates (remove-duplicate-helper (tail $list) (head $list))))
+    )
+)
+(= (remove-duplicate-helper $list $element)
+    (if (== $list Nil)
+        Nil
+        (if (== (head $list) $element)
+            (remove-element (tail $list) $element)
+            (Cons (head $list) (remove-element (tail $list) $element))
+        )
+)
+)
+
+! (remove-duplicates (Cons 1 (Cons 2 (Cons 2 (Cons 3 (Cons 3 Nil)))))) ; -> (Cons 1 (Cons 2 (Cons 3 Nil)))
