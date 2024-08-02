@@ -68,3 +68,23 @@
 )
 
 ! (max-value (Cons 1 (Cons 3 (Cons 2 (Cons 4 Nil))))) ;-> 4
+
+================================================== 
+ ;min-value
+(= (min-value $list)
+    (if (== $list Nil)
+        Nil
+        (min-value-helper (tail $list) (head $list))
+    )
+)
+
+(= (min-value-helper $list $min-so-far)
+    (if (== $list Nil)
+        $min-so-far
+        (if (< (head $list) $min-so-far)
+            (min-value-helper (tail $list) (head $list))
+            (min-value-helper (tail $list) $min-so-far)
+        )
+)
+)
+! (min-value (Cons 1 (Cons 3 (Cons 2 (Cons 4 Nil))))) ; -> 1
