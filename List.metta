@@ -10,3 +10,12 @@
 
 (= (tail Nil) Nil)
 (= (tail (Cons $x $xs)) $xs)
+
+========================================== 
+ ;length of the list
+(= (length $list)
+    (if (== $list Nil)
+        0
+        (+ 1 (length (tail $list)))
+    )
+)
