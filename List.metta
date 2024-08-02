@@ -153,6 +153,19 @@
 ! (map square (Cons 1 (Cons 2 (Cons 3 Nil)))) ; => (Cons 1 (Cons 4 (Cons 9 Nil)))
 ======================================================== 
  ;filter
+(= (filter $cond $list)
+    (if (== $list Nil)
+        Nil
+        (if ($cond (head $list))
+            (Cons (head $list) (filter $cond (tail $list)))
+            (filter $cond (tail $list))
+        )
+)
+)
+
+(= (is-even $x) (== (% $x 2) 0))
+
+! (filter is-even (Cons 1 (Cons 2 (Cons 3 Nil)))) ; => (Cons 2 Nil)
 ======================================================== 
  ;foldl
 ======================================================== 
