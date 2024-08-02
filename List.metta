@@ -168,8 +168,28 @@
 ! (filter is-even (Cons 1 (Cons 2 (Cons 3 Nil)))) ; => (Cons 2 Nil)
 ======================================================== 
  ;foldl
-======================================================== 
+(= (foldl $func $acc $list)
+    (if (== $list Nil)
+        $acc
+        (foldl $func ($func $acc (head $list)) (tail $list))
+    )
+)
+
+(= (add $x $y) (+ $x $y))
+
+! (foldl add 0 (Cons 1 (Cons 2 (Cons 3 Nil)))) ; -> 6
+
+========================================================= 
  ;foldr
+(= (foldr $func $acc $list)
+    (if (== $list Nil)
+        $acc
+        ($func (head $list) (foldr $func $acc (tail $list)))
+    )
+)
+ ;(= (add $x $y) (+ $x $y)) ;redefine and should be uncommented incase run individually
+! (foldr add 0 (Cons 1 (Cons 2 (Cons 3 Nil)))) ; -> 6
+
 ======================================================== 
  ;reverse
 (= (reverse $list)
