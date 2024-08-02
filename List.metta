@@ -140,3 +140,24 @@
 ! (remove-duplicates (Cons 1 (Cons 2 (Cons 2 (Cons 3 (Cons 3 Nil)))))) ; -> (Cons 1 (Cons 2 (Cons 3 Nil)))
 
 ======================================================== 
+ ;map
+======================================================== 
+ ;filter
+======================================================== 
+ ;foldl
+======================================================== 
+ ;foldr
+======================================================== 
+ ;reverse
+(= (reverse $list)
+    (reverse-helper $list Nil)
+)
+
+(= (reverse-helper $list $acc)
+    (if (== $list Nil)
+        $acc
+        (reverse-helper (tail $list) (Cons (head $list) $acc))
+    )
+)
+
+! (reverse (Cons 1 (Cons 2 (Cons 3 Nil)))) ;-> (Cons 3 (Cons 2 (Cons 1 Nil)))
