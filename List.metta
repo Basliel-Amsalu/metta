@@ -161,3 +161,24 @@
 )
 
 ! (reverse (Cons 1 (Cons 2 (Cons 3 Nil)))) ;-> (Cons 3 (Cons 2 (Cons 1 Nil)))
+
+========================================================== 
+ ;sort
+(= (sort $list)
+    (if (== $list Nil)
+        Nil
+        (insert (head $list) (sort (tail $list)))
+    )
+)
+
+(= (insert $x $sorted-list)
+    (if (== $sorted-list Nil)
+        (Cons $x Nil)
+        (if (< $x (head $sorted-list))
+            (Cons $x $sorted-list)
+            (Cons (head $sorted-list) (insert $x (tail $sorted-list)))
+        )
+)
+)
+
+! (sort (Cons 4 (Cons 1 (Cons 0 Nil)))) ;->(Cons 0 (Cons 1 (Cons 4 Nil)))
