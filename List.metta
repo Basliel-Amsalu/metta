@@ -19,3 +19,18 @@
         (+ 1 (length (tail $list)))
     )
 )
+
+! (length (Cons 1 (Cons 2 (Cons 3 Nil)))) ;-> 3
+
+=========================================== 
+ ;is-member
+(= (is-member $list $value)
+    (if (== $list Nil) False
+        (if (== $value (head $list))
+            True
+            (is-member (tail $list) $value)
+        ))
+)
+
+! (is-member 2 (Cons 1 (Cons 2 (Cons 3 Nil)))) ;->True
+! (is-member 4 (Cons 1 (Cons 2 (Cons 3 Nil)))) ;->False
