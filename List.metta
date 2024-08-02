@@ -25,7 +25,8 @@
 =========================================== 
  ;is-member
 (= (is-member $list $value)
-    (if (== $list Nil) False
+    (if (== $list Nil)
+        False
         (if (== $value (head $list))
             True
             (is-member (tail $list) $value)
@@ -104,3 +105,18 @@
 )
 
 ! (pop (Cons 1 (Cons 2 (Cons 3 Nil)))) ;->(Cons 1 (Cons 2 Nil))
+
+====================================================== 
+ ;remove-element
+(= (remove-element $list $element)
+    (if (== $list Nil)
+        Nil
+        (if (== (head $list) $element)
+            (tail $list)
+            (Cons (head $list) (remove-element (tail $list) $element))
+        )
+)
+)
+
+! (remove-element (Cons 1 (Cons 2 (Cons 3 Nil))) 2) ;->(Cons 1 (Cons 3 Nil))
+====================================================== 
