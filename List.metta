@@ -88,3 +88,19 @@
 )
 )
 ! (min-value (Cons 1 (Cons 3 (Cons 2 (Cons 4 Nil))))) ; -> 1
+
+====================================================== 
+ ;push
+====================================================== 
+ ;pop
+(= (pop $list)
+    (case $list
+        (
+            (Nil Nil)
+            ( (Cons $x Nil) Nil)
+            ( (Cons $x $xs) (Cons $x (pop $xs)))
+        )
+)
+)
+
+! (pop (Cons 1 (Cons 2 (Cons 3 Nil)))) ;->(Cons 1 (Cons 2 Nil))
