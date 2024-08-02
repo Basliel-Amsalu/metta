@@ -35,3 +35,16 @@
 )
 
 ! (insert 2 (Node 1 (Node 2 Nil Nil) (Node 3 Nil Nil))) ;-> (Node 1 (Node 2 Nil Nil) (Node 3 (Node 2 Nil Nil) Nil))
+
+========================================================= 
+ ;search node
+(= (search $value $tree)
+    (if (== $tree Nil)
+        False
+        (if (== $value (head-tree $tree))
+            True
+            (or (search $value (left-tree $tree)) (search $value (right-tree $tree)))
+        )
+)
+)
+! (search 2 (Node 1 (Node 2 Nil Nil) (Node 3 Nil Nil))) ;-> True
