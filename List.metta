@@ -91,7 +91,17 @@
 ! (min-value (Cons 1 (Cons 3 (Cons 2 (Cons 4 Nil))))) ; -> 1
 
 ====================================================== 
- ;push
+ ;push  //sorry but i cant seem to understand the difference between append and push except their usecases so i just redid append in different name
+(= (push $list $element)
+    (case $list
+        (
+            (Nil (Cons $element Nil))
+            ( (Cons $x $xs) (Cons $x (push $xs $element)))
+        )
+)
+)
+
+! (push (Cons 1 (Cons 2 (Cons 3 Nil))) 4)
 ====================================================== 
  ;pop
 (= (pop $list)
