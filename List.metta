@@ -34,3 +34,16 @@
 
 ! (is-member 2 (Cons 1 (Cons 2 (Cons 3 Nil)))) ;->True
 ! (is-member 4 (Cons 1 (Cons 2 (Cons 3 Nil)))) ;->False
+
+============================================ 
+ ;append
+(= (append $list $element)
+    (case $list
+        (
+            (Nil (Cons $element Nil))
+            ( (Cons $x $xs) (Cons $x (append $xs $element)))
+        )
+)
+)
+
+! (append (Cons 1 (Cons 2 (Cons 3 Nil))) 4) ; ->(Cons 1 (Cons 2 (Cons 3(Cons 4 Nil))))
